@@ -1,0 +1,154 @@
+<style>
+
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+    }
+    input[type=number] { -moz-appearance:textfield; }
+
+    .border-perfect {
+        -webkit-box-shadow: 5px 5px 9px 5px #000000; 
+        box-shadow: 5px 5px 9px 5px #000000;
+    }
+
+    .border-left {
+        border-left-color: rgb(22 163 74);
+        border-top-color: rgb(22 163 74);
+    }
+
+    .border-right {
+        border-right-color: rgb(220 38 38);
+        border-bottom-color: rgb(220 38 38);
+    }
+
+    .parent2 {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 40px;
+        grid-row-gap: 30px;
+    }
+
+    .filtro1 { grid-area: 1 / 1 / 2 / 2; }
+    .filtro2 { grid-area: 2 / 1 / 3 / 2; }
+    .filtro3 { grid-area: 2 / 2 / 3 / 3; }
+    .filtro4 { grid-area: 2 / 3 / 3 / 4; }
+    .filtro5 { grid-area: 2 / 4 / 3 / 5; }
+    .filtro6 { grid-area: 2 / 5 / 3 / 6; }
+
+    .botones {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 0px;
+    }
+
+    .boton1 { grid-area: 1 / 1 / 2 / 2; }
+    .boton2 { grid-area: 1 / 2 / 2 / 3; }
+
+</style>
+
+<h1 class="text-blue-900 text-center text-4xl my-10 py-2" style="font-family: 'Anton'"> Inventario Actual</h1>
+
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg mt-10">
+    <table id="myTable" class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+            <!--FILTRO BUSQUEDA RAPIDA-->
+            <tr>
+                <div class="relative float-right mr-10 mb-3">
+                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <input onkeyup="filtrando()" type="busqueda" id="busqueda" class="block p-4 pl-10 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Busqueda" required>
+                </div> 
+            </tr>
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                    Código de barra
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Nombre del producto
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Marca del producto
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Categoria
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Precio
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Cantidad
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Medida
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Agregar o Quitar
+                </th>
+                <th scope="col" class="py-3 px-6 text-center">
+                    Acciones
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each inventario}}
+            <tr class="bg-white border-b hover:bg-gray-50 filtrar">
+                <td scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                    {{codigo_de_barras}}
+                </td>
+                <td scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                    {{nombre}}
+                </td>
+                <td class="py-4 px-6">
+                    {{marca}}
+                </td>
+                <td class="py-4 px-6">
+                    {{categoria}}
+                </td>
+                <td class="py-4 px-6">
+                    ${{valor}}
+                <td class="py-4 px-6">
+                    {{cantidad}} 
+                </td>
+                <td class="py-4 px-6">
+                    {{medida}} {{cajas}}
+                </td>
+                <td class="py-4 px-6 grid grid-flow-col auto-cols-max">
+                    <div class="mx-2">
+                        {{!-- SUMAR Y RESTAR --}}
+                        <form action="/inv/sumyres" method="POST">
+                            <input type="hidden" name="id" value="{{id}}">
+                            <div class="grid gap-3 grid-cols-3">
+                                <div><button name="boton" value="sumar" type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ">+</button></div>
+                                <div><input type="number" name="cant" id="cant" class="w-8 text-black border-2 border-left border-right ml-2 mt-2"></div>
+                                <div><button name="boton" value="restar" type="submit" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">-</button></div>
+                            </div>
+                        </form>
+                    </div>
+                </td>
+                <td class="py-4 px-2">
+                    <div class="botones">
+                        <div class="boton1">
+                            <a class="text-white bg-blue-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 " 
+                            href="/inv/vender/{{id}}"><svg aria-hidden="true" class="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path></svg>Vender Producto</a>
+                        </div>
+                        <div class="boton2">
+                            <a type="button" onclick="eliminadoInv()" class="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 " 
+                            href="/inv/eliminar/{{id}}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                            <path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 10.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z" clip-rule="evenodd" />
+                            </svg> Eliminar</a>
+                        </div>
+                    </div>
+                </td>         
+            </tr>
+            {{/each}}
+        </tbody>
+        <script src="/js/filtro.js"></script>
+    </table>
+</div>
+
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ferreteria</title>
+    <link rel="shortcut icon" href="/img/hammer.ico">
+    {{!-- CSS PURO --}}
+    <link type="text/css" rel="stylesheet" href="/styles/onlystyles.css">
+    {{!-- TAILWIND CSS --}}
+    <link type="text/css" rel="stylesheet" href="/styles/styles.css">
+    {{!-- FUENTES --}}
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+    </style>
+    {{!--ICONOS--}}
+    <script src="https://kit.fontawesome.com/41d73c2623.js" crossorigin="anonymous"></script>
+    
+    {{!--ALERTAS--}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="/js/inputs.js" defer></script>
+    <script src="/js/cant.js" defer></script>
+  </head>
+  <body>
+    <nav class="flex py-5 bg-blue-900 text-white px-24">
+      {{!-- NOMBRE LOGO --}}
+      <div class="w-1/2 px-12 mr-auto">
+          <a href="/"><p class="text-3xl font-bold hover:text-red-800" style="font-family: 'Anton'">Ferreteria</p></a>
+      </div>
+      <ul class="w-1/2 px-16 ml-auto flex justify-end pt-1">
+        <li class="nav-item px-4">
+          <a href="/inv" class="nav-link font-semibold hover:bg-red-800 hover:shadow-lg  py-3 px-4 rounded-md">Inventario</a>
+        </li>
+        <li class="nav-item px-4">
+          <a href="/agregar" class="nav-link font-semibold hover:bg-red-800 hover:shadow-lg py-3 px-4 rounded-md">Agregar</a>
+        </li>
+        <li class="nav-item px-4">
+          <a href="/notas" class="nav-link font-semibold hover:bg-red-800 hover:shadow-lg py-3 px-4 rounded-md">Notas</a>
+        </li>
+        <li class="nav-item px-4">
+          <a href="/notas/agregarNotas" class="nav-link font-semibold hover:bg-red-800 hover:shadow-lg py-3 px-4 rounded-md">Agregar</a>
+        </li>
+        <li class="nav-item px-4">
+          <a href="/ventas" class="nav-link font-semibold hover:bg-red-800 hover:shadow-lg py-3 px-4 rounded-md">Ventas</a>
+        </li>
+      </ul>
+    </nav>
+    
+    {{{body}}}
+
+  </body>
+</html>

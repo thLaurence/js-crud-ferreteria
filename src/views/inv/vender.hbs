@@ -1,0 +1,116 @@
+<style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .inputs {
+        display: grid;
+        grid-template-columns: repeat(2, 0.3fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-column-gap: 40px;
+        grid-row-gap: 20px;
+    }
+
+    .input1 { grid-area: 1 / 1 / 2 / 2; }
+    .input2 { grid-area: 1 / 2 / 2 / 3; }
+    .input3 { grid-area: 2 / 1 / 3 / 2; }
+    .input4 { grid-area: 2 / 2 / 3 / 3; }
+    .input5 { grid-area: 3 / 1 / 4 / 2; }
+    .input6 { grid-area: 3 / 2 / 4 / 3; }
+    .input7 { grid-area: 4 / 1 / 5 / 2; }
+    .input8 { grid-area: 4 / 2 / 5 / 3; }
+
+    .panel {
+        display: grid;
+        grid-template-columns: repeat(2, 0.2fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 200px;
+        grid-row-gap: 0px;
+    }
+
+    .venta1 { grid-area: 1 / 1 / 2 / 2; }
+    .venta2 { grid-area: 1 / 2 / 2 / 3; }
+
+</style>
+
+<div>
+    <h1 class="text-blue-900 text-center text-4xl my-10 py-2" style="font-family: 'Anton'"> Realizar Venta </h1>
+</div>
+
+{{#each inventario}}
+<div class="panel mx-36 mb-10 flex justify-center ml-32 bg-gray-50 p-4 rounded-lg">
+    <div class="venta1 relative z-0 mb-3 mt-4 group">
+        <input type="number" name="cant" id="cant"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            onkeyup="cantidad()" placeholder=" ">
+        
+        <label for="cant"
+            class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Cantidad a vender</label>
+    </div>
+    <div class="venta2 relative z-0 mb-3 mt-4 ml-6 group"> 
+        <input type="number" name="maximo" id="maximo" value="{{cantidad}}" placeholder=" " readonly
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+        <label for="maximo"
+            class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Cantidad disponible</label>
+    </div>
+</div>
+{{/each}}
+<form action="" method="post">
+    {{#each inventario}}
+    <div class="inputs flex justify-center ml-48">
+        {{!-- CÓDIGO DE BARRAS --}}
+        <div class="input1">
+            <label for="codigo_de_barras" class="block mb-2 text-sm font-medium text-gray-900">Código de barras</label>
+            <input value="{{codigo_de_barras}}" readonly type="text" name="codigo_de_barras" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-3/6">
+        </div>
+        {{!-- NOMBRE --}}
+        <div class="input2">
+            <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900">Nombre del producto</label>
+            <input value="{{nombre}}" readonly type="text" name="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-3/6">
+        </div>
+        {{!-- MARCA --}}
+        <div class="input3">
+            <label for="marca" class="block mb-2 text-sm font-medium text-gray-900">Marca del producto</label>
+            <input value="{{marca}}" readonly type="text" name="marca" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-3/6">
+        </div>
+        {{!-- MEDIDA --}}
+        <div class="input4">
+            <label for="medida" class="block mb-2 text-sm font-medium text-gray-900">Medida</label>
+            <select name="medida" id="medida" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-3/6">
+                <option value="{{medida}}">{{medida}}</option>
+            </select>
+        </div>
+        {{!-- CAJAS --}}
+        <div class="input5">
+            <label for="cajas" class="block mb-2 text-sm font-medium text-gray-900">Cajas</label>
+            <select name="cajas" id="cajas" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-3/6">
+                <option value="{{cajas}}">{{cajas}}</option>
+            </select>
+        </div>
+        {{!-- VALOR --}}
+        <div class="input6">
+            <label for="valor" class="block mb-2 text-sm font-medium text-gray-900">Precio del producto</label>
+            <input value="{{valor}}" type="number" name="valor" id="valor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-3/6">
+        </div>
+        {{!--CANTIDAD VENDIDA--}}
+        <div class="input7">
+            <label for="cantidad_vendida" class="block mb-2 text-sm font-medium text-gray-900">Cantidad de productos</label>
+            <input type="number" name="cantidad_vendida" id="cantidad_vendida" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-3/6">
+        </div>
+        {{!--VALOR TOTAL--}}
+        <div class="input8">
+            <label for="valor_total" class="block mb-2 text-sm font-medium text-gray-900">Precio total</label>
+            <input value="" type="number" name="valor_total" id="valor_total" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-3/6">
+        </div>
+    </div>
+    <div class="flex justify-center mt-14">
+        <button onclick="completado()" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Vender</button>
+    </div>
+    {{/each}}
+</form>

@@ -1,0 +1,123 @@
+<style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .parent {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 24px;
+        grid-row-gap: 0px;
+    }
+
+    .div1 { grid-area: 1 / 1 / 2 / 2; }
+    .div2 { grid-area: 1 / 2 / 2 / 3; }
+    .div3 { grid-area: 1 / 3 / 2 / 4; }
+
+</style>
+
+<div class="">
+    <h1 class="text-blue-900 text-center border-2 border-blue-900 text-4xl my-10 py-2" style="font-family: 'Anton'"> Editar Producto</h1>
+</div>
+
+
+<div class="mx-52">
+    {{#each inventario}}
+    <form action="" method="POST" class="mt-4">
+        <div class="grid md:grid-cols-2 md:gap-6">
+            {{!-- CATEGORIA --}}
+            <div class="relative mb-2 w-full group">
+                {{!-- <label for="categoria" class="block mb-2 text-sm font-medium text-gray-500">Categoria</label> --}}
+                <select name="categoria" id="categoria" class="block p-2 mb-6 w-full text-sm text-gray-500 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" value="{{categoria}}">
+                    <option value="{{categoria}}" selected="selected">{{categoria}}</option>
+                    <option value="" selected>Categoria</option>
+                    <option value="Herramienta">Herramientas</option>
+                    <option value="Material">Materiales</option>
+                </select>
+            </div>
+            
+            {{!-- SUB-CATEGORIA --}}
+            <div class="relative mb-2 group w-full">
+                {{!-- <label for="sub-categoria" class="block mb-2 text-sm font-medium text-gray-500">Sub-categoria</label> --}}
+                <select name="sub_categoria" id="sub_categoria" class="block p-2 mb-6 w-full text-sm text-gray-500 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" value="{{sub_categoria}}">
+                    <option value="{{sub_categoria}}" selected="selected">{{sub_categoria}}</option>
+                    <option value="">Sub-categoria</option>
+                    <option value="Golpe">Golpe</option>
+                    <option value="Corte">Corte</option>
+                </select>
+            </div>
+        </div>
+        
+
+        <div class="grid md:grid-cols-2 md:gap-6">
+            {{!-- NOMBRE --}}
+            <div class="relative z-0 mb-6 w-full group">
+                <input type="text" name="nombre" id="nombre"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    value="{{nombre}}">
+                <label for="nombre"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nombre del producto</label>
+            </div>
+
+            {{!-- MARCA --}}
+            <div class="relative z-0 mb-6 w-full group">
+                <input type="text" name="marca" id="marca"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    value="{{marca}}">
+                <label for="marca"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Marca del producto</label>
+            </div>
+        </div>
+
+        
+        <div class="parent">
+            {{!-- VALOR --}}
+            <div class="div1 z-0 mb-6 w-full relative">
+                <input type="number" name="valor" id="valor"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    value="{{valor}}">
+                <label for="valor"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Precio del producto</label>
+            </div>
+
+            {{!-- CANTIDAD --}}
+            <div class="div2 z-0 mb-6 w-full relative">
+                <input type="number" name="cantidad" id="cantidad"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" " required="" value="{{cantidad}}">
+                <label for="cantidad"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Cantidad total del producto</label>
+            </div>
+            {{!-- MEDIDA --}}
+            <div class="relative mb-2 w-40 group">
+                <select name="medida" id="medida" class="block p-2 mb-6 w-full text-sm text-gray-500 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" value="{{medida}}">
+                    <option value="{{medida}}" selected="selected">{{medida}}</option>
+                    <option value="Unidades">Unidades</option>
+                    <option value="Cajas">Cajas</option>
+                    <option value="Kilogramos">Kilogramos</option>
+                    <option value="Litros">Litros</option>
+                    <option value="Galones">Galones</option>
+                    <option value="Metros">Metros</option>
+                    <option value="Centímetros">Centímetros</option>
+                </select>
+            </div>
+            <div class="div4 relative mb-2 w-full group">
+                <select name="cajas" id="cajas" style="display: none;" class="block p-2 mb-6 w-full text-sm text-gray-500 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
+                    <option value="{{cajas}}" selected="selected">{{cajas}}</option>
+                    <option value="">Unidades en caja</option>
+                    <option value="100 Unidades">100 Unidades</option>
+                    <option value="200 Unidades">200 Unidades</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Editar Producto</button>
+    </form>
+    {{/each}}
+</div>

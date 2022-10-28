@@ -1,0 +1,27 @@
+{{#each notas}}
+<div class="grid place-items-center my-5">
+    <div class="max-w-2xl rounded overflow-hidden shadow-lg">
+        <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">{{titulo}}</div>
+                <p class="text-gray-700 text-base">
+                {{descripcion}}
+                </p>
+            </div>
+            <div class="px-6 pt-4 pb-2">
+                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{fecha}}</span>
+            </div>
+            <div class="float-right">
+                <a type="submit" href="/notas/eliminar/{{id}}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-x" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M4 7h16" />
+                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                        <path d="M10 12l4 4m0 -4l-4 4" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}

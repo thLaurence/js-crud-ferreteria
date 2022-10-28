@@ -1,0 +1,99 @@
+<style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .inputs {
+        display: grid;
+        grid-template-columns: repeat(2, 0.3fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-column-gap: 40px;
+        grid-row-gap: 20px;
+    }
+
+    .input1 { grid-area: 1 / 1 / 2 / 2; }
+    .input2 { grid-area: 1 / 2 / 2 / 3; }
+    .input3 { grid-area: 2 / 1 / 3 / 2; }
+    .input4 { grid-area: 2 / 2 / 3 / 3; }
+    .input5 { grid-area: 3 / 1 / 4 / 2; }
+    .input6 { grid-area: 3 / 2 / 4 / 3; }
+    .input7 { grid-area: 4 / 1 / 5 / 2; }
+    .input8 { grid-area: 4 / 2 / 5 / 3; }
+
+</style>
+
+<div>
+    <h1 class="text-blue-900 text-center text-4xl my-10 py-2" style="font-family: 'Anton'"> Ingresar Productos </h1>
+</div>
+
+<form action="" method="post">
+    <div class="inputs flex justify-center ml-48">
+        {{!-- CATEGORIA --}}
+        <div class="input1">
+            <label for="categoria" class="block mb-2 text-sm font-medium text-gray-900">Categoria</label>
+            <select name="categoria" id="categoria" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-3/6">
+                <option value="">Categoria</option>
+                <option value="Herramienta">Herramientas</option>
+                <option value="Materiales">Materiales</option>
+            </select>
+        </div>
+        {{!-- CÓDIGO DE BARRAS --}}
+        <div class="input2">
+            <label for="codigo_de_barras" class="block mb-2 text-sm font-medium text-gray-900">Código de barras</label>
+            <input type="text" name="codigo_de_barras" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-3/6">
+        </div>
+        {{!-- NOMBRE --}}
+        <div class="input3">
+            <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900">Nombre del producto</label>
+            <input type="text" name="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-3/6">
+        </div>
+        {{!-- MARCA --}}
+        <div class="input4">
+            <label for="marca" class="block mb-2 text-sm font-medium text-gray-900">Marca del producto</label>
+            <input type="text" name="marca" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-3/6">
+        </div>
+        {{!-- VALOR --}}
+        <div class="input5">
+            <label for="valor" class="block mb-2 text-sm font-medium text-gray-900">Precio del producto</label>
+            <input type="number" name="valor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-3/6">
+        </div>
+        {{!--CANTIDAD--}}
+        <div class="input6">
+            <label for="cantidad" class="block mb-2 text-sm font-medium text-gray-900">Cantidad de productos</label>
+            <input type="number" name="cantidad" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-3/6">
+        </div>
+        {{!-- MEDIDA --}}
+        <div class="input7">
+            <label for="medida" class="block mb-2 text-sm font-medium text-gray-900">Medida</label>
+            <select name="medida" id="medida" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-3/6">
+                <option value="">Medidas</option>
+                <option value="Unidades">Unidades</option>
+                <option value="Cajas">Cajas</option>
+                <option value="Metros">Metros</option>
+                <option value="Centimetros">Centímetros</option>
+                <option value="Litros">Litros</option>
+                <option value="Galones">Galones</option>
+            </select>
+        </div>
+        {{!-- CAJAS --}}
+        <div class="input8">
+            <label for="cajas" class="block mb-2 text-sm font-medium text-gray-900">Cajas</label>
+            <select name="cajas" id="cajas" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-3/6">
+                <option value="">Unidades en caja</option>
+                <option value="">No posee</option>
+                <option value="100 Unidades">100 Unidades</option>
+                <option value="200 Unidades">200 Unidades</option>
+            </select>
+        </div>
+    </div>
+    <div class="flex justify-center mt-14">
+        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Agregar</button>
+    </div>
+    
+</form>

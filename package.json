@@ -1,0 +1,28 @@
+{
+  "name": "ferreteria",
+  "version": "1.0.0",
+  "description": "Inventario CRUD",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "build-css": "postcss ./src/public/styles/tailwind.css -o ./src/public/styles/styles.css"
+  },
+  "author": "thLaurence",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.8",
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "express-myconnection": "^1.0.4",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.19",
+    "postcss": "^8.4.16",
+    "postcss-cli": "^10.0.0",
+    "sweetalert": "^2.1.2",
+    "tailwindcss": "^3.1.8"
+  }
+}
